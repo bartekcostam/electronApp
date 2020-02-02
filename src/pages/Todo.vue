@@ -53,6 +53,7 @@ export default {
         })
         .onOk(() => {
           this.tasks.splice(index, 1);
+          this.$q.notify("Task deleted");
         });
     }
   }
