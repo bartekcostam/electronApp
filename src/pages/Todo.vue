@@ -46,6 +46,12 @@
         </q-item-section>
       </q-item>
     </q-list>
+    <div v-if="!tasks.length" class="no-tasks absolute-center">
+      <q-icon name="check" size="100px" color="primary" />
+      <div class="text-h5 text-primary text-center">
+        No tasks
+      </div>
+    </div>
   </q-page>
 </template>
 
@@ -54,20 +60,7 @@ export default {
   data() {
     return {
       newTask: '',
-      tasks: [
-        {
-          title: 'Code',
-          done: false,
-        },
-        {
-          title: 'Eat',
-          done: true,
-        },
-        {
-          title: 'Sleep',
-          done: false,
-        },
-      ],
+      tasks: [],
     }
   },
   methods: {
@@ -85,7 +78,11 @@ export default {
         })
     },
     addTask() {
-      console.log('addTask')
+      this.tasks.push({
+        title: this.newTask,
+        done: false,
+      })
+      this.newTask = ''
     },
   },
 }
@@ -97,5 +94,9 @@ export default {
     text-decoration: line-through;
     color: #bbb;
   }
+}
+
+.no-tasks {
+  opacity: 0.5;
 }
 </style>
